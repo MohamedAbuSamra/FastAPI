@@ -24,8 +24,9 @@ app/
   db.py        # Database session and engine
   main.py      # FastAPI app entrypoint
 scripts/
-  import_products.py  # CSV import script
+  seed_data.py        # Seeds products and users from CSV files
 alembic/      # Database migrations
+seed/         # CSV files for initial data (products, users)
 requirements.txt
 .env           # Environment variables
 ```
@@ -61,6 +62,18 @@ This script performs the following:
 2. Generates Alembic migrations (if none exist)
 3. Applies migrations
 4. Starts the FastAPI development server at `http://localhost:8000`
+
+### 🔹 Seed Data Only
+
+If you want to seed the products and users tables (without creating the database), use:
+
+```bash
+python scripts/seed_data.py
+```
+
+This script will:
+
+1. Seed initial data into `products` and `users` tables from CSV files located in the `seed/` folder
 
 ---
 
