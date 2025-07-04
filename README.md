@@ -79,20 +79,27 @@ This script will:
 
 ## ⚙️ Manual Setup (Step by Step)
 
-1. Install dependencies:
+1. (Recommended) Create and activate a virtual environment:
+
+   ```bash
+   python -m venv .venv
+   source .venv/bin/activate  # On Windows use `.venv\Scripts\activate`
+   ```
+
+2. Install dependencies:
 
    ```bash
    pip install -r requirements.txt
    ```
 
-2. Set up `.env` with your database URL, user, password, and secret key:
+3. Set up `.env` with your database URL, user, password, and secret key:
 
    ```env
    DATABASE_URL=postgresql://postgres:your_password@localhost:5432/game_api_db
    SECRET_KEY=your_secret_key_here
    ```
 
-3. (Optional) To create a local PostgreSQL database and apply migrations automatically, run:
+4. (Optional) To create a local PostgreSQL database and apply migrations automatically, run:
 
    ```bash
    python scripts/setup_db.py
@@ -101,28 +108,43 @@ This script will:
    - This script creates the `game_api_db` database locally and runs Alembic migrations.
    - ⚠️ Skip this step if you are using a cloud-hosted database like Render.com, GCP, or any alternative PostgreSQL host and have set the `DATABASE_URL` accordingly.
 
-4. Generate initial migration files (for tables) from your models:
+5. Generate initial migration files (for tables) from your models:
 
    ```bash
    alembic revision --autogenerate -m "Initial tables"
    ```
 
-5. Run migrations:
+6. Run migrations:
 
    ```bash
    alembic upgrade head
    ```
 
-6. Start server:
+7. Start server:
 
    ```bash
    uvicorn app.main:app --reload
    ```
 
-7. Open the server on this port `http://localhost:8000/`
+8. Open the server on this port `http://localhost:8000/`
 
-8. Access Swagger docs at: `http://localhost:8000/docs`
+9. Access Swagger docs at: `http://localhost:8000/docs`
 
 ---
+
+## 📁 Files and Folders to Ignore
+
+The following files and folders are ignored by git (see `.gitignore`) and should not be committed:
+
+- `.env`, `.env.*` – Environment variables and secrets
+- `.venv/` – Local Python virtual environment
+- `__pycache__/`, `*.pyc`, `*.pyo`, `*.pyd` – Python cache/bytecode
+- `.DS_Store` – macOS system files
+- `.vscode/` – VS Code editor settings
+- `.mypy_cache/`, `.pytest_cache/` – Test/type checking caches
+- `*.log` – Log files
+- Alembic and app subfolder caches
+
+These are ignored to keep your repository clean and secure.
 
 See code for details on endpoints and usage.
