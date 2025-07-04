@@ -45,7 +45,7 @@ async def login(request: Request, db: Session = Depends(get_db)):
         raise HTTPException(status_code=400, detail="Missing username or password")
 
     user = db.query(User).filter(User.username == username).first()
-    if not user or not verify_password(password, user.hashed_password):
+    if not user or not verify_password(password, user.password):
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Incorrect username or password")
     access_token = create_access_token({"sub": str(user.id)})
     return {"access_token": access_token, "token_type": "bearer"}
