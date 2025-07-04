@@ -1,0 +1,37 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+
+# C extensions
+*.so
+
+# Virtual environment
+.venv/
+
+# macOS system files
+.DS_Store
+
+# Environment variables
+.env
+.env.*
+
+# VS Code settings
+.vscode/
+
+# Pytest and mypy caches
+.mypy_cache/
+.pytest_cache/
+
+# Logs
+*.log
+
+# Alembic cache
+alembic/versions/__pycache__/
+alembic/__pycache__/
+
+# App cache
+app/__pycache__/
+app/core/__pycache__/
+app/models/__pycache__/
+app/routers/__pycache__/
+app/schemas/__pycache__/ 
