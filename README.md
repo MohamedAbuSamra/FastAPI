@@ -1,5 +1,14 @@
 # FastAPI Backend Project
 
+> **Note:** Before starting, create a `.env` file in the project root with the following content (adjust values as needed):
+>
+> ```env
+> DATABASE_URL=postgresql://postgres:your_password@localhost:5432/game_api_db
+> SECRET_KEY=b7e2c8e1c9f44e2e8a1d4f6b7c2e5a8f9d3c6b1a7e4f2c9d8b6a3e7c5f1b2d4a
+> ALGORITHM=HS256
+> ACCESS_TOKEN_EXPIRE_MINUTES=30
+> ```
+
 ## Features
 
 - User authentication with JWT
@@ -96,7 +105,8 @@ This script will:
 
    ```env
    DATABASE_URL=postgresql://postgres:your_password@localhost:5432/game_api_db
-   SECRET_KEY=your_secret_key_here
+   SECRET_KEY=b7e2c8e1c9f44e2e8a1d4f6b7c2e5a8f9d3c6b1a7e4f2c9d8b6a3e7c5f1b2d4a
+   # For production, generate your own strong random secret key!
    ```
 
 4. (Optional) To create a local PostgreSQL database and apply migrations automatically, run:
@@ -132,19 +142,8 @@ This script will:
 
 ---
 
-## 📁 Files and Folders to Ignore
-
-The following files and folders are ignored by git (see `.gitignore`) and should not be committed:
-
-- `.env`, `.env.*` – Environment variables and secrets
-- `.venv/` – Local Python virtual environment
-- `__pycache__/`, `*.pyc`, `*.pyo`, `*.pyd` – Python cache/bytecode
-- `.DS_Store` – macOS system files
-- `.vscode/` – VS Code editor settings
-- `.mypy_cache/`, `.pytest_cache/` – Test/type checking caches
-- `*.log` – Log files
-- Alembic and app subfolder caches
-
-These are ignored to keep your repository clean and secure.
-
 See code for details on endpoints and usage.
+
+- Example users are provided in the seed data (see `seed/users.csv`). You can use these credentials to log in, obtain a JWT token, and use the system:
+  - Username: `admin`, Password: `admin`
+  - Username: `m.abusamra`, Password: `123456`
