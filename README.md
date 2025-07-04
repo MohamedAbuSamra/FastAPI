@@ -8,6 +8,8 @@
 > ALGORITHM=HS256
 > ACCESS_TOKEN_EXPIRE_MINUTES=30
 > ```
+>
+> The default local database connection details (DB name, user, password, host, port) can be found in `scripts/setup_db.py`.
 
 ## Features
 
