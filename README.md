@@ -24,6 +24,38 @@
 - CSV import script for products
 - Swagger UI at `/docs`
 
+### 🗂️ Database Schema Overview
+
+The PostgreSQL database consists of four main tables:
+
+- **users**: stores account credentials and timestamps.
+- **products**: item details including country-based location.
+- **orders**: links users and products for purchase history.
+- **countries**: maps ISO codes to country names.
+
+#### ER Diagram
+
+users (id)  
+products (id, location → countries.iso)  
+orders (user_id → users.id, product_id → products.id)  
+countries (iso, name)
+
+### 🗂️ Database Schema Overview
+
+The PostgreSQL database consists of four main tables:
+
+- **users**: stores account credentials and timestamps.
+- **products**: item details including country-based location.
+- **orders**: links users and products for purchase history.
+- **countries**: maps ISO codes to country names.
+
+#### ER Diagram
+
+users (id)  
+products (id, location → countries.iso)  
+orders (user_id → users.id, product_id → products.id)  
+countries (iso, name)
+
 ## Requirements
 
 - **Python 3.9+** (The project was developed and tested with Python 3.11.7, but should work with any Python 3.9 or newer)
