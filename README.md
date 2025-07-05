@@ -26,35 +26,21 @@
 
 ### 🗂️ Database Schema Overview
 
-The PostgreSQL database consists of four main tables:
+The PostgreSQL database consists of four main tables, all using **timestamp fields** (`created_at`, `updated_at`, `deleted_at`) for data lifecycle tracking and **soft deletion**.
 
-- **users**: stores account credentials and timestamps.
-- **products**: item details including country-based location.
-- **orders**: links users and products for purchase history.
-- **countries**: maps ISO codes to country names.
+- **users**: Stores account credentials and timestamps for tracking registration, updates, and soft deletions.
+- **products**: Contains item details (name, price, description, etc.) and country-based `location`. Includes lifecycle timestamps.
+- **orders**: Records purchase history by linking users to products. Tracks order creation and supports soft delete.
+- **countries**: Static reference table mapping ISO codes to country names.
 
-#### ER Diagram
+#### 🧩 ER Diagram
 
-users (id)  
-products (id, location → countries.iso)  
-orders (user_id → users.id, product_id → products.id)  
+```
+users (id, created_at, updated_at, deleted_at)
+products (id, location → countries.iso, created_at, updated_at, deleted_at)
+orders (user_id → users.id, product_id → products.id, created_at, updated_at, deleted_at)
 countries (iso, name)
-
-### 🗂️ Database Schema Overview
-
-The PostgreSQL database consists of four main tables:
-
-- **users**: stores account credentials and timestamps.
-- **products**: item details including country-based location.
-- **orders**: links users and products for purchase history.
-- **countries**: maps ISO codes to country names.
-
-#### ER Diagram
-
-users (id)  
-products (id, location → countries.iso)  
-orders (user_id → users.id, product_id → products.id)  
-countries (iso, name)
+```
 
 ## Requirements
 
