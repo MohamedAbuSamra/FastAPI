@@ -71,9 +71,9 @@ python scripts/prepare.py
 This script performs the following:
 
 1. Installs dependencies from `requirements.txt`
-2. Generates Alembic migrations (if none exist)
-3. Applies migrations
-4. Starts the FastAPI development server at `http://localhost:8000`
+2. Starts the FastAPI development server at `http://localhost:8000`
+
+> **Note:** Database migrations are now handled manually. See the section below for migration commands.
 
 ### 🔹 Seed Data Only
 
@@ -120,6 +120,38 @@ This script will:
 
    - This script creates the `game_api_db` database locally and runs Alembic migrations.
    - ⚠️ Skip this step if you are using a cloud-hosted database like Render.com, GCP, or any alternative PostgreSQL host and have set the `DATABASE_URL` accordingly.
+
+---
+
+## 🛠️ Database Migration Commands (Manual)
+
+> **Note:** Migrations are no longer handled automatically by `scripts/prepare.py`. Use the following Alembic commands to manage migrations manually:
+
+- **Create a new migration after changing models:**
+
+  ```bash
+  alembic revision --autogenerate -m "Describe your migration"
+  ```
+
+- **Apply all pending migrations:**
+
+  ```bash
+  alembic upgrade head
+  ```
+
+- **Check current migration state:**
+
+  ```bash
+  alembic current
+  ```
+
+- **Show all migration history:**
+
+  ```bash
+  alembic history
+  ```
+
+---
 
 5. Generate initial migration files (for tables) from your models:
 
