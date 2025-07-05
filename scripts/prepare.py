@@ -34,4 +34,4 @@ else:
     print("✅ Step 2: Database is up to date. No migrations to apply.\n")
 
 # Step 3: Start FastAPI server
-run("uvicorn app.main:app --reload", 3)
+run("uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload", 3)
