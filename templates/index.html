@@ -18,14 +18,22 @@
 <body>
     <div class="container">
         <h1>🚀 Game Store API</h1>
-        <p>This is a simple API for a game store using FastAPI. It supports:</p>
+        <p>This is a FastAPI-powered backend for a game store. Most endpoints require authentication via JWT.<br><br>Key features:</p>
         <ul>
-            <li>User authentication with JWT</li>
-            <li>Product listing with pagination</li>
-            <li>Order creation with receipt</li>
-            <li>CSV import for products</li>
-            <li>Swagger UI for testing endpoints</li>
+            <li><strong>User authentication</strong> (<code>/login</code>) with JWT (JSON or form data)</li>
+            <li><strong>Product listing</strong> (<code>/products</code>) with pagination and country/location filtering</li>
+            <li><strong>Product details</strong> (<code>/products/{product_id}</code>)</li>
+            <li><strong>Order creation</strong> (<code>/purchase</code>): Purchase a product and receive a full receipt (includes price and product info)</li>
+            <li><strong>Order transactions</strong> (<code>/purchase/transaction</code>, <code>/purchase/transactions</code>, <code>/purchase/transactions/{id}</code>): Retrieve or list your orders/receipts</li>
+            <li><strong>User profile</strong> (<code>/users/profile</code>): Get your info and transaction count</li>
+            <li><strong>Country listing</strong> (<code>/countries</code>): List all available countries</li>
+            <li><strong>CSV import scripts</strong> for products and users (see <code>scripts/</code> folder)</li>
+            <li><strong>Swagger UI</strong> for interactive API docs at <code>/docs</code></li>
         </ul>
+        <p style="color:#888; font-size:0.98em; margin-top:-1em;">Note: All endpoints except <code>/login</code> and <code>/countries</code> require a valid JWT token in the <code>Authorization</code> header.</p>
+        <div style="background:#eaf2ff; color:#174ea6; border-radius:7px; padding:12px 18px; margin:18px 0 8px 0; font-size:1em; text-align:left;">
+            <strong>Quickstart:</strong> For development/testing, log in with <code>admin</code> / <code>admin</code> at <code>/login</code> to get a valid JWT token for all endpoints.
+        </div>
         <a class="docs-link" href="/docs">Open Swagger UI Docs</a>
         <div class="footer">Powered by Python 3.11 · FastAPI · <a href="https://fastapi.tiangolo.com/" style="color:#2d6cdf;">Docs</a></div>
     </div>

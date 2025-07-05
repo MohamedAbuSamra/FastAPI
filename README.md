@@ -38,6 +38,7 @@ scripts/
   seed_data.py        # Seeds products and users from CSV files
 alembic/      # Database migrations
 seed/         # CSV files for initial data (products, users)
+templates/    # HTML templates for the app (e.g., landing page)
 requirements.txt
 .env           # Environment variables
 ```
