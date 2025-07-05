@@ -5,9 +5,10 @@ import datetime
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from app.db import SessionLocal
-from app.models.product import Product, LocationEnum
+from app.models.product import Product
 from app.models.user import User
 from app.models.order import Order
+from app.models.country import Country
 from app.core.security import get_password_hash
 
 # Model registry: model name -> dict with model class, unique keys, and enum fields
@@ -15,8 +16,8 @@ MODEL_REGISTRY = {
     "product": {
         "model": Product,
         "unique_keys": ["title", "location", "id"],
-        "enum_fields": {"location": LocationEnum, "id": int},
-        "type_casts": {"price": float, "id": int, "title": str, "description": str, "location": LocationEnum}
+        "enum_fields": {"id": int},
+        "type_casts": {"price": float, "id": int, "title": str, "description": str, "location": str}
     },
     "user": {
         "model": User,
@@ -24,7 +25,12 @@ MODEL_REGISTRY = {
         "enum_fields": {},
         "type_casts": {"id": int, "password": str, "username": str }
     },
-  
+    "country": {
+        "model": Country,
+        "unique_keys": ["iso"],
+        "enum_fields": {"id": int},
+        "type_casts": {"id": int, "name": str, "iso": str}
+    },
     # Add more models here as needed
 }
 
