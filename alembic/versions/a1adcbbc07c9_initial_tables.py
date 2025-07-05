@@ -26,6 +26,9 @@ def upgrade():
         sa.UniqueConstraint('iso'),
         sa.Index('ix_countries_iso', 'iso', unique=True)
     )
+    # Seed required countries before adding FK
+    op.execute("INSERT INTO countries (name, iso) VALUES ('Jordan', 'JO'), ('Saudi Arabia', 'SA')")
+    
     op.create_table('products',
         sa.Column('id', sa.Integer(), nullable=False),
         sa.Column('title', sa.String(), nullable=False),
