@@ -5,6 +5,7 @@ from app.db import engine
 import os
 from dotenv import load_dotenv
 from fastapi.openapi.utils import get_openapi
+from fastapi.middleware.cors import CORSMiddleware
 
 load_dotenv()
 print(os.getenv("DATABASE_URL"))
@@ -18,6 +19,15 @@ app = FastAPI(
         "usePkceWithAuthorizationCodeGrant": False,
         "clientId": "default",  # just placeholder, can be ignored
     }
+)
+
+# Add CORS middleware
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # For production, specify allowed origins
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
 )
 
 @app.on_event("startup")

@@ -13,7 +13,17 @@ class OrderRead(OrderBase):
     purchase_time: datetime
 
     class Config:
-        orm_mode = True
+        from_attributes = True
+        json_schema_extra = {
+            "examples": [
+                {
+                    "id": 1,
+                    "user_id": 2,
+                    "product_id": 3,
+                    "purchase_time": "2024-07-05T12:34:56"
+                }
+            ]
+        }
 
 class OrderReceipt(BaseModel):
     order_id: int
