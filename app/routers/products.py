@@ -2,7 +2,7 @@ from fastapi import APIRouter, Depends, HTTPException, Query
 from sqlalchemy.orm import Session, joinedload
 from app.db import SessionLocal
 from app.models.product import Product
-from app.schemas.product import ProductRead
+from app.schemas.product import ProductRead, ProductListResponse
 from typing import List, Optional
 from app.dependencies import get_current_user
 from app.models.user import User
@@ -18,7 +18,7 @@ def get_db():
 
 @router.get(
     "/",
-    response_model=List[ProductRead],
+    response_model=ProductListResponse,
     summary="List Products",
     description="Returns a paginated list of available products as JSON. You can optionally filter by location (ISO code) using query params. Requires Authorization header."
 )
@@ -30,10 +30,11 @@ def list_products(
     location: Optional[str] = Query(None, description="ISO code for country (e.g., JO, SA)")
 ):
     query = db.query(Product).options(joinedload(Product.country))
-    if location:
+    if location and location.lower() not in ("all", "null", ""):
         query = query.filter(Product.location == location)
+    count = query.count()
     products = query.offset(skip).limit(limit).all()
-    return products
+    return {"items": products, "count": count}
 
 @router.get(
     "/{product_id}",

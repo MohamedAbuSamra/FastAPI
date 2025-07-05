@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from fastapi.responses import HTMLResponse
-from app.routers import auth, products, orders
+from app.routers.index import all_routers
 from app.db import engine
 import os
 from dotenv import load_dotenv
@@ -73,9 +73,8 @@ def root():
     </html>
     """
 
-app.include_router(auth.router)
-app.include_router(products.router)
-app.include_router(orders.router)
+for router in all_routers:
+    app.include_router(router)
 
 # def custom_openapi():
 #     if app.openapi_schema:

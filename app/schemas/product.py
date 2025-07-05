@@ -1,5 +1,5 @@
 from pydantic import BaseModel, Field
-from typing import Literal, Optional
+from typing import Literal, Optional, List
 
 class CountryRead(BaseModel):
     id: int
@@ -36,4 +36,8 @@ class ProductRead(ProductBase):
                     }
                 }
             ]
-        } 
+        }
+
+class ProductListResponse(BaseModel):
+    items: List[ProductRead]
+    count: int 
