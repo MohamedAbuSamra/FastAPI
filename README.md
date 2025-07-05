@@ -1,3 +1,7 @@
+# Game Store API
+
+**Live Demo:** [https://game-store-fastapi.onrender.com](https://game-store-fastapi.onrender.com)
+
 # FastAPI Backend Project
 
 > **Note:** Before starting, create a `.env` file in the project root with the following content (adjust values as needed):
